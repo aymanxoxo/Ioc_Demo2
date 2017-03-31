@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@Scripts.Render("~/bundles/angular")
+@Scripts.Render("~/bundles/crypto")
+<style>
+    .horizontal {
+        display: inline;
+    }
+
+    .error {
+        color: red;
+    }
+</style>
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/NgApp/IocApp.js"></script>
+<script src="~/NgApp/Utilities/Services/EncryptionService.js"></script>
+<script src="~/NgApp/Utilities/Services/UserAuthenticated.js"></script>
+<script src="~/NgApp/Account/Services/LoginService.js"></script>
+<script src="~/NgApp/Account/Services/RegisterService.js"></script>
+<script src="~/NgApp/Welcome/Services/WelcomeService.js"></script>
+<script src="~/NgApp/Utilities/Services/CultureService.js"></script>
+<script src="~/NgApp/Utilities/Directives/ngMatch.js"></script>
+<script src="~/NgApp/Account/Controllers/LoginController.js"></script>
+<script src="~/NgApp/Account/Controllers/RegisterController.js"></script>
+<script src="~/NgApp/Welcome/Controllers/WelcomeController.js"></script>
+<script src="~/NgApp/Questions/Controllers/QuestionsController.js"></script>
+<script src="~/NgApp/Account/Resources/loginResources.en.js"></script>
+<script src="~/NgApp/Account/Resources/registerResources.en.js"></script>
+
+<base href="/"/>
+
+<div ng-app="IocApp">
+
+    <div ng-controller="tempCtrl">
+        <div ui-view="login"></div>
+        <div ui-view="content"></div>
+    </div>
+
+</div>

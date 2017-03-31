@@ -1,0 +1,50 @@
+﻿
+<style>
+    div{
+        display: inline;
+    }
+</style>
+<form name="regForm" ng-init="init()">
+    {{labels.fullname}}
+    <input type="text" name="userName" ng-model="user.fullName" />
+    <br/>
+
+    <span class="error">*</span>
+    {{labels.email}}
+    <input type="email" id="email" name="email" ng-model="user.email" ng-required="true" ng-change="actions.inputChanged('Email')"/>
+    <div ng-messages="regForm.email.$error" ng-if="registerSubmit || regForm.email.$dirty" class="error">
+        <div ng-message="required">{{labels.emailRequired}}</div>
+        <div ng-message="email">{{labels.emailFormat}}</div>
+        <div ng-message="validation">validation message</div>
+    </div>
+    <div class="error" ng-repeat="error in validationErrors | filter: {'FieldName': 'Email'}: true">{{error.Error}}</div>
+    <br/>
+
+    <span class="error">*</span>
+    {{labels.password}}
+    <input type="password" name="password" ng-model="user.password" ng-required="true" ng-minlength="6" ng-maxlength="12" ng-change="actions.inputChanged('Password')"/>
+    <div ng-messages="regForm.password.$error" ng-if="registerSubmit || regForm.password.$dirty" class="error">
+        <div ng-message="required">{{labels.passwordRequired}}</div>
+        <div ng-message="minlength">{{labels.passwordMin}}</div>
+        <div ng-message="maxlength">{{labels.passwordMax}}</div>
+    </div>
+    <div class="error" ng-repeat="error in validationErrors | filter: {'FieldName': 'Password'} : true">{{error.Error}}</div>
+    <br/>
+
+    <span class="error">*</span>
+    {{labels.repeatPassword}}
+    <input type="password" name="repeatPassword" ng-model="user.repeatPassword" ng-match="password" ng-required="true" ng-change="actions.inputChanged('RepeatPassword')"/>
+    <div ng-messages="regForm.repeatPassword.$error" ng-if="registerSubmit || regForm.repeatPassword.$dirty" class="error">
+        <div ng-message="match">{{labels.repeatPasswordMatch}}</div>
+        <div ng-message="required">{{labels.repeatPasswordMatch}}</div>
+    </div>
+    <div class="error" ng-repeat="error in validationErrors | filter: {'FieldName': 'RepeatPassword'} : true">{{error.Error}}</div>
+    <br/>
+
+
+    <input type="button" value="{{labels.register}}" ng-click="actions.register(regForm)" />
+</form>
+
+
+
+
